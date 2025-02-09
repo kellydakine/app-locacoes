@@ -1,4 +1,3 @@
-// Home.jsx
 import { useEffect, useState } from "react";
 import { getAcomodacoes } from "../services/api";
 import AcomodacaoCard from "../components/AcomodacaoCard";
@@ -21,12 +20,12 @@ export default function Home() {
     getAcomodacoes(cidade).then(setAcomodacoes);
   }, [cidade]);
 
-  const buscarPorCidade = () => {
+  const findByCity = () => {
     if (!cidade) return;
     getAcomodacoes(cidade).then(setAcomodacoes);
   };
 
-  const toggleFavorito = (id) => {
+  const toggleFavorite = (id) => {
     const novosFavoritos = favoritos.includes(id)
       ? favoritos.filter((fav) => fav !== id)
       : [...favoritos, id];
@@ -44,7 +43,7 @@ export default function Home() {
         aria-label="Buscar por cidade"
       />
       <Button
-        onClick={buscarPorCidade}
+        onClick={findByCity}
         aria-label="Buscar acomodações na cidade"
       >
         Buscar
@@ -61,7 +60,7 @@ export default function Home() {
           <AcomodacaoCard
             key={a.id}
             acomodacao={a}
-            onFavorite={toggleFavorito}
+            onFavorite={toggleFavorite}
             isFavorite={favoritos.includes(a.id)}
           />
         ))}
