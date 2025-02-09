@@ -32,7 +32,28 @@ acomodacoes = [
         "imagem": "https://via.placeholder.com/300",
         "preco_noite": 360,
         "localizacao": "Curitiba, PR"
-    }
+    },
+    {
+        "id": 4,
+        "nome": "Loft em Curitiba",
+        "imagem": "https://via.placeholder.com/300",
+        "preco_noite": 220,
+        "localizacao": "Curitiba, PR"
+    },
+    {
+        "id": 5,
+        "nome": "Suíte Privativa no Rio de Janeiro",
+        "imagem": "https://via.placeholder.com/300",
+        "preco_noite": 134,
+        "localizacao": "Rio de Janeiro, RJ"
+    },
+    {
+        "id": 6,
+        "nome": "Apartamento na Trindade",
+        "imagem": "https://via.placeholder.com/300",
+        "preco_noite": 210,
+        "localizacao": "Florianópolis, SC"
+    },
 ]
 
 @app.get("/acomodacoes")
