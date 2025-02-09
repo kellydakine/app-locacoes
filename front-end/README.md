@@ -12,6 +12,9 @@ Antes de rodar o projeto, você precisa ter as seguintes ferramentas instaladas:
 
 ## Rodando a API (pasta back-end)
 
+Crie um ambiente virtual:
+python -m venv venv
+
 Instale as dependências:
 pip install fastapi uvicorn
 
