@@ -11,9 +11,7 @@ import {
 } from "./AcomodacaoCardStyle";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 
-export default function AcomodacaoCard({ acomodacao, favoritar, favoritos }) {
-  const isFavorito = favoritos.includes(acomodacao.id);
-
+export default function AcomodacaoCard({acomodacao, onFavorite, isFavorite }) {
   return (
     <CardContainer>
       <CardImage
@@ -24,8 +22,11 @@ export default function AcomodacaoCard({ acomodacao, favoritar, favoritos }) {
         <CardTitle>{acomodacao.nome}</CardTitle>
         <CardLocation>{acomodacao.localizacao}</CardLocation>
         <CardPrice>R$ {acomodacao.preco_noite}/noite</CardPrice>
-        <FavoriteButton onClick={() => favoritar(acomodacao.id)}>
-          {isFavorito ? (
+        <FavoriteButton
+          onClick={() => onFavorite(acomodacao.id)}
+          aria-label="Favoritar acomodação"
+        >
+          {isFavorite ? (
             <HeartIcon>
               <FaHeart color="red" />
             </HeartIcon>

@@ -1,3 +1,4 @@
+// Home.jsx
 import { useEffect, useState } from "react";
 import { getAcomodacoes } from "../services/api";
 import AcomodacaoCard from "../components/AcomodacaoCard";
@@ -17,16 +18,15 @@ export default function Home() {
   );
 
   useEffect(() => {
-    getAcomodacoes().then(setAcomodacoes);
-  }, []);
+    getAcomodacoes(cidade).then(setAcomodacoes);
+  }, [cidade]);
 
   const buscarPorCidade = () => {
-    getAcomodacoes(cidade).then((data) => {
-      setAcomodacoes(data);
-    });
+    if (!cidade) return;
+    getAcomodacoes(cidade).then(setAcomodacoes);
   };
 
-  const favoritar = (id) => {
+  const toggleFavorito = (id) => {
     const novosFavoritos = favoritos.includes(id)
       ? favoritos.filter((fav) => fav !== id)
       : [...favoritos, id];
@@ -41,8 +41,14 @@ export default function Home() {
         placeholder="Digite a cidade"
         value={cidade}
         onChange={(e) => setCidade(e.target.value)}
+        aria-label="Buscar por cidade"
       />
-      <Button onClick={buscarPorCidade}>Buscar</Button>
+      <Button
+        onClick={buscarPorCidade}
+        aria-label="Buscar acomodações na cidade"
+      >
+        Buscar
+      </Button>
 
       {acomodacoes.length === 0 && cidade !== "" && (
         <NoResultsMessage>
@@ -55,8 +61,8 @@ export default function Home() {
           <AcomodacaoCard
             key={a.id}
             acomodacao={a}
-            favoritar={favoritar}
-            favoritos={favoritos}
+            onFavorite={toggleFavorito}
+            isFavorite={favoritos.includes(a.id)}
           />
         ))}
       </CardGrid>
